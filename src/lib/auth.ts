@@ -32,8 +32,8 @@ export const authOptions: NextAuthOptions = {
           return {
             id: storeOwner.id,
             email: storeOwner.email,
-            name: storeOwner.ownerName,
-            phone: storeOwner.phone
+            name: storeOwner.ownerName || 'Store Owner',
+            phone: storeOwner.phone || ''
           }
         } catch (error) {
           console.error('Auth error:', error)
