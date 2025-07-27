@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model StoreOwner {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  phone       String?
+  storeName   String?
+  ownerName   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  customers   Customer[]
+  transactions Transaction[]
+  
+  @@map("store_owners")
+}
+
+model Customer {
+  id              String   @id @default(cuid())
+  customerId      String   @unique // Generated ID for referencing
+  customerName    String
+  displayName     String   // Computed field for handling duplicates
+  phone           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Foreign key
+  storeOwnerId    String
+  storeOwner      StoreOwner @relation(fields: [storeOwnerId], references: [id], onDelete: Cascade)
+  
+  // Relations
+  transactions    Transaction[]
+  
+  @@map("customers")
+}
+
+model Transaction {
+  id              String          @id @default(cuid())
+  amount          Float
+  type            TransactionType
+  notes           String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  
+  // Foreign keys
+  customerId      String
+  customer        Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  storeOwnerId    String
+  storeOwner      StoreOwner @relation(fields: [storeOwnerId], references: [id], onDelete: Cascade)
+  
+  @@map("transactions")
+}
+
+enum TransactionType {
+  CREDIT_GIVEN
+  PAYMENT_RECEIVED
+}

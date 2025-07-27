@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(dir:*)",
+      "Bash(sc query:*)",
+      "Bash(\"C:\\Program Files\\PostgreSQL\\17\\bin\\psql\" --version)",
+      "Bash(set PGPASSWORD=default)",
+      "Bash(\"C:\\Program Files\\PostgreSQL\\17\\bin\\psql\" -U postgres -h localhost -c \"CREATE DATABASE merahisaab;\")",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(move:*)",
+      "Bash(copy schema.prisma prismaschema.prisma)",
+      "Bash(set DATABASE_URL=postgresql://postgres:default@localhost:5432/merahisaab?schema=public)",
+      "Bash(run-migration.bat)",
+      "Bash(npm run dev:*)",
+      "Bash(set DATABASE_URL=postgresql://neondb_owner:npg_rn3fOYRH1UCS@ep-autumn-fire-a1srwhdi-pooler.ap-southeast-1.aws.neon.tech/merahisaab?sslmode=require)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(del nul)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}
